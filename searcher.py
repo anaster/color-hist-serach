@@ -2,7 +2,7 @@ import numpy as np
 
 
 class Searcher:
-    def __index__(self, index):
+    def __init__(self, index):
         self.index = index
 
     def search(self, queryFeatures):
@@ -10,7 +10,6 @@ class Searcher:
         for (k, features) in self.index.items():
             d = self.chi2_distance(features, queryFeatures)
             results[k] = d
-
         results = sorted([(v, k) for (k, v) in results.items()])
         return results
 
