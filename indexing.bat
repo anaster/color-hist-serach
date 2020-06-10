@@ -1,0 +1,1 @@
+python index.py --dataset images --index index.cpickle
