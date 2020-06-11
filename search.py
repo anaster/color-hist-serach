@@ -29,10 +29,4 @@ for j in range(0, 10):
     path = os.path.join(args["dataset"], imageName)
     result = cv2.imread(path)
     print("\t{}. {} : {:.3f}".format(j + 1, imageName, score))
-#     if j < 5:
-#         montageA[j * 166:(j + 1) * 166, :] = result
-#     else:
-#         montageB[(j - 5) * 166:((j - 5) + 1) * 166, :] = result
-# cv2.imshow("Results 1-5", montageA)
-# cv2.imshow("Results 6-10", montageB)
 cv2.waitKey(0)
