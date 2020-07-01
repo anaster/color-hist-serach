@@ -6,6 +6,10 @@ import os
 import pickle
 import cv2
 
+# Обработка команд в консоли с обработкой трех обязательных параметров:
+# 1. Название папки-датасета
+# 2. Файл с индексами
+# 3. Путь к ищображению-образцу
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
                 help="Path to the directory that contains the images we just indexed")
@@ -21,9 +25,10 @@ desc = RGBHist([8, 8, 8])
 queryFeatures = desc.describe(queryImage)
 index = pickle.loads(open(args["index"], "rb").read())
 searcher = Searcher(index)
-results = searcher.search(queryFeatures)
-montageA = np.zeros((166 * 5, 400, 3), dtype="uint8")
-montageB = np.zeros((166 * 5, 400, 3), dtype="uint8")
+results = searcher.search(queryFeatures)        # Выполняется поиск
+# Вывод первых 10 результатов в формате "путь файла : хи-квадрат"
+# Если изображения категории образца входят в первые 10 позиций
+# Поиск считается успешным
 for j in range(0, 10):
     (score, imageName) = results[j]
     path = os.path.join(args["dataset"], imageName)
